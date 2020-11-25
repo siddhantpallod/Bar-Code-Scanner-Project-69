@@ -18,7 +18,9 @@ export default class ScanScreen extends React.Component{
    getCameraPermission = async () => {
         const {status} = await Permissions.askAsync(Permissions.CAMERA)
         this.setState({
-            hasCameraPermissions : status === 'granted'
+            hasCameraPermissions : status === 'granted',
+            buttonState : 'clicked',
+            scanned : false
         })
    }
 
@@ -32,19 +34,19 @@ export default class ScanScreen extends React.Component{
 
     render(){
 
-        const haveCameraPermissions = this.state.hasCameraPermissions;
-        const isScanned = this.state.scanned;   
-        const buttonStatus = this.state.buttonState;   
+        const hasCameraPermissions = this.state.hasCameraPermissions;
+        const scanned = this.state.scanned;   
+        const buttonState = this.state.buttonState;   
 
-        if(buttonStatus === 'clicked' && haveCameraPermissions){
+        if(buttonState === 'clicked' && hasCameraPermissions){
             return(
                 <BarCodeScanner
                 style = {StyleSheet.absoluteFillObject}
-                onBarcodeScanned = {isScanned ? undefined : this.handleBarcodeScanned}
+                onBarcodeScanned = {scanned ? undefined : this.handleBarcodeScanned}
                 />
             )
         }
-        else if(buttonStatus === "normal"){
+        else if(buttonState === "normal"){
             return(
                 <View style = {styles.container}>
                 <Image
@@ -56,11 +58,11 @@ export default class ScanScreen extends React.Component{
                     marginBottom : 50
                     }}
 
-                    source = {require('../assets/barcode.PNG')}
+                    source = {require('../assets/barcode.png')}
                 />
                 <Text style = {styles.displayText2}> Bar Code Scanner </Text>
                 <Text style = {styles.displayText}> 
-                {haveCameraPermissions === true ? 
+                {hasCameraPermissions === true ? 
                 this.state.scannedData : 'Requesting For Camera Permissions'} </Text>
                 <TouchableOpacity style = {styles.scanButton}
                 onPress = {this.getCameraPermission}
