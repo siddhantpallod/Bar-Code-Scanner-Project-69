@@ -24,7 +24,7 @@ export default class ScanScreen extends React.Component{
         })
    }
 
-   handleBarcodeScanned = async ({type,data}) => {
+   handleBarCodeScanned = async ({type,data}) => {
         this.setState({
             scanned : true,
             scannedData : data,
@@ -42,7 +42,7 @@ export default class ScanScreen extends React.Component{
             return(
                 <BarCodeScanner
                 style = {StyleSheet.absoluteFillObject}
-                onBarcodeScanned = {scanned ? undefined : this.handleBarcodeScanned}
+                onBarCodeScanned = {scanned ? undefined : this.handleBarCodeScanned}
                 />
             )
         }
@@ -58,7 +58,7 @@ export default class ScanScreen extends React.Component{
                     marginBottom : 50
                     }}
 
-                    source = {require('../assets/barcode.png')}
+                    source = {require('../assets/barcode.PNG')}
                 />
                 <Text style = {styles.displayText2}> Bar Code Scanner </Text>
                 <Text style = {styles.displayText}> 
