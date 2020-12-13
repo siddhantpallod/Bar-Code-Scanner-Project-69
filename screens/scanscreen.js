@@ -58,7 +58,7 @@ export default class ScanScreen extends React.Component{
                     marginBottom : 50
                     }}
 
-                    source = {require('../assets/barcode.PNG')}
+                    source = {require('../assets/Barcode-.jpg')}
                 />
                 <Text style = {styles.displayText2}> Bar Code Scanner </Text>
                 <Text style = {styles.displayText}> 
@@ -107,7 +107,6 @@ const styles = StyleSheet.create({
     buttonText : {
         color : 'white',
         fontSize : 20,
-        fontFamily : 'bold',
         alignSelf : 'center'
     },
     
